@@ -1,0 +1,70 @@
+package com.asu.sd.models.impl;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
+
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Entity
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
+@Table(name="sprinkler")
+public class Sprinkler {
+
+	public Sprinkler() {
+		super();
+	}
+
+	@Id
+	@SequenceGenerator(name = "sensorID", allocationSize=1)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "sensorID")
+	private Long sprinklerId;
+
+	@Column(name = "farmId", nullable=false)
+	private Long farmId;
+
+	@Column(name = "zone", nullable=false)
+	private int zone;
+
+	@Column(name = "status")
+	private Status state = Status.OFF;
+
+	public Long getSensorId() {
+		return sprinklerId;
+	}
+
+	public void setSensorId(Long sprinklerId) {
+		this.sprinklerId = sprinklerId;
+	}
+
+	public Long getFarmId() {
+		return farmId;
+	}
+
+	public void setFarmId(Long farmId) {
+		this.farmId = farmId;
+	}
+
+	public int getZone() {
+		return zone;
+	}
+
+	public void setZone(int zone) {
+		this.zone = zone;
+	}
+
+	public enum Status {
+		ON, OFF;
+	}
+}
+

@@ -1,4 +1,4 @@
-package com.asu.sd.models;
+package com.asu.sd.models.impl;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -18,7 +18,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-//@Table(name="tbl_farm_Details")
+@Table(name="farmDetails")
 public class FarmDetails {
 
 	public FarmDetails() {
@@ -29,12 +29,20 @@ public class FarmDetails {
 	@SequenceGenerator(name = "farmID", allocationSize=1)
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "farmID")
 	private Long farmId;
+	
+	@Column(name="userId", nullable = false)
+	private String userId;
 
-	@Column(name = "owner", nullable = false)
-	private String owner;
+	@Column(name="moistureThreshold")
+	private float moistureThreshold;
 
-	@Column(name = "email", nullable = false)
-	private String email;
+	public String getUserId() {
+		return userId;
+	}
+
+	public void setUserId(String userId) {
+		this.userId = userId;
+	}
 
 	public Long getFarmId() {
 		return farmId;
@@ -44,20 +52,12 @@ public class FarmDetails {
 		this.farmId = farmId;
 	}
 
-	public String getOwner() {
-		return owner;
+	public float getMoistureThreshold() {
+		return moistureThreshold;
 	}
 
-	public void setOwner(String owner) {
-		this.owner = owner;
-	}
-
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
+	public void setMoistureThreshold(float moistureThreshold) {
+		this.moistureThreshold = moistureThreshold;
 	}
 
 }
