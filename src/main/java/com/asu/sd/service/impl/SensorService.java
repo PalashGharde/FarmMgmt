@@ -17,5 +17,8 @@ public class SensorService {
 	public List<MoistureSensor> getMoistureSensors(Long farmId) {
 		return moistureSensorRepository.findByFarmId(farmId);
 	}
-
+	
+	public void updateMoistureInSensor(Long sensorId, Long farmId, float new_moisture) {
+		moistureSensorRepository.updateMoistureInSensor(sensorId, farmId, new_moisture);
+	}
 }

@@ -26,8 +26,8 @@ public class Sprinkler {
 	}
 
 	@Id
-	@SequenceGenerator(name = "sensorID", allocationSize=1)
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "sensorID")
+	@SequenceGenerator(name = "sprinklerID", allocationSize=1)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "sprinklerID")
 	private Long sprinklerId;
 
 	@Column(name = "farmId", nullable=false)
@@ -37,13 +37,13 @@ public class Sprinkler {
 	private int zone;
 
 	@Column(name = "status")
-	private Status state = Status.OFF;
+	private boolean state = false;
 
-	public Long getSensorId() {
+	public Long getSprinklerId() {
 		return sprinklerId;
 	}
 
-	public void setSensorId(Long sprinklerId) {
+	public void setSprinklerId(Long sprinklerId) {
 		this.sprinklerId = sprinklerId;
 	}
 
@@ -63,8 +63,13 @@ public class Sprinkler {
 		this.zone = zone;
 	}
 
-	public enum Status {
-		ON, OFF;
+	public boolean isState() {
+		return state;
 	}
+
+	public void setState(boolean state) {
+		this.state = state;
+	}
+
 }
 

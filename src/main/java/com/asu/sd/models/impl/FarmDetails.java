@@ -56,8 +56,8 @@ public class FarmDetails {
 		return moistureThreshold;
 	}
 
-	public void setMoistureThreshold(float moistureThreshold) {
-		this.moistureThreshold = moistureThreshold;
+	public void setMoistureThreshold(float d) {
+		this.moistureThreshold = d;
 	}
 
 }

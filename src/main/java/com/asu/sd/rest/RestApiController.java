@@ -11,8 +11,11 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.asu.sd.models.impl.FarmDetails;
 import com.asu.sd.models.impl.MoistureSensor;
+import com.asu.sd.models.impl.Sprinkler;
 import com.asu.sd.repository.FarmDetailsRepository;
+import com.asu.sd.service.impl.FarmDetailsService;
 import com.asu.sd.service.impl.SensorService;
+import com.asu.sd.service.impl.SprinklerService;
 
 @RestController
 @RequestMapping("/rest")
@@ -24,6 +27,11 @@ public class RestApiController {
 	@Autowired
 	SensorService sensorService;
 	
+	@Autowired
+	SprinklerService sprinklerService;
+	
+	@Autowired
+	FarmDetailsService farmDetailsService;
 //    @GetMapping("/hello")
 //    public String hello() {
 ////    	farmDetailsRepository.save(new FarmDetails().setFarmId(null))
@@ -48,6 +56,28 @@ public class RestApiController {
 	@GetMapping("/getSoilMoistureSensors")
 	public List<MoistureSensor> getMoistureSensors(@RequestParam("farmId") Long farmId) {
 		return sensorService.getMoistureSensors(farmId);
+	}
+	
+	
+	@GetMapping("/getSprinklers")
+	public List<Sprinkler> getSprinklers(@RequestParam("farmId") Long farmId) {
+		return sprinklerService.getSprinklers(farmId);
+	}
+	
+	@GetMapping("/getThresholdValueOfFarm")
+	public List<FarmDetails> getThresholdValueOfFarm(@RequestParam("farmId") Long farmId) {
+		
+		List<FarmDetails> farms = farmDetailsService.getFarm(farmId);
+		System.out.print("Threshold:");
+		float Threshold = farms.get(0).getMoistureThreshold();
+		System.out.println(Threshold);
+		return farms;	
+	}
+	
+	@GetMapping("/setThresholdValueOfFarm")
+	public List<FarmDetails> setThresholdValueOfFarm(@RequestParam("farmId") Long farmId, @RequestParam("Threshold") float Threshold) {
+		farmDetailsService.updateMoistureThreshold(farmId,Threshold);
+		return farmDetailsService.getFarm(farmId);
 	}
 
 }
