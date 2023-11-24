@@ -25,4 +25,8 @@ public interface FarmDetailsRepository extends JpaRepository<FarmDetails, Long>{
 	@Modifying
 	@Query("update FarmDetails f set f.moistureThreshold = :Threshold where f.farmId=:FarmId")
 	void updateMoistureThreshold(@Param(value = "FarmId") Long FarmId, @Param(value = "Threshold") float Threshold);
+
+	
+	@Query("select f from FarmDetails f")
+	List<FarmDetails> getAllFarmId();
 }

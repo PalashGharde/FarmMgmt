@@ -66,7 +66,6 @@ public class RestApiController {
 	
 	@GetMapping("/getThresholdValueOfFarm")
 	public List<FarmDetails> getThresholdValueOfFarm(@RequestParam("farmId") Long farmId) {
-		
 		List<FarmDetails> farms = farmDetailsService.getFarm(farmId);
 		System.out.print("Threshold:");
 		float Threshold = farms.get(0).getMoistureThreshold();

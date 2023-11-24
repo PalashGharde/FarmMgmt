@@ -24,4 +24,8 @@ public class FarmDetailsService {
 	public void updateMoistureThreshold(Long farmId, float Threshold) {
 		farmDetailsRepository.updateMoistureThreshold(farmId,Threshold);
 	}
+
+	public List<FarmDetails> getAllFarms() {
+		return farmDetailsRepository.getAllFarmId();
+	}
 }
